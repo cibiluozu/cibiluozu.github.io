@@ -1,0 +1,876 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="GIZA++,WordAlignment," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="cibiluozu" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="##GIZA++ 参数说明 
+1.  下载GIZA++2.  准备语料，这里使用的是NiuTrans 里面 经过乱码过滤及数据预处理过后的sample中的数据。3.  在linux环境下，gcc版本为4.8.1 （可用gcc -v 查询）4.  解压所下载的GIZA++，我的版本为giza-pp-v1.0.7，发现其中有两个文件夹，其中mkcls是用于生成word class的。5. 对其进行编译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GIZA++参数说明">
+<meta property="og:url" content="http://cibiluozu.com/2015/03/29/GIZA-参数说明/index.html">
+<meta property="og:site_name" content="cibiluozu">
+<meta property="og:description" content="##GIZA++ 参数说明 
+1.  下载GIZA++2.  准备语料，这里使用的是NiuTrans 里面 经过乱码过滤及数据预处理过后的sample中的数据。3.  在linux环境下，gcc版本为4.8.1 （可用gcc -v 查询）4.  解压所下载的GIZA++，我的版本为giza-pp-v1.0.7，发现其中有两个文件夹，其中mkcls是用于生成word class的。5. 对其进行编译">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img1.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img2.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img3.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img4.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img5.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img6.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img7.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img8.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img9.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img10.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img11.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img12.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img14.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img15.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img16.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img17.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img18.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img19.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img20.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img21.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img22.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img23.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img24.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img25.png">
+<meta property="og:image" content="http://cibiluozu.com/img/GIZA++_img26.png">
+<meta property="og:updated_time" content="2016-01-26T13:51:35.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GIZA++参数说明">
+<meta name="twitter:description" content="##GIZA++ 参数说明 
+1.  下载GIZA++2.  准备语料，这里使用的是NiuTrans 里面 经过乱码过滤及数据预处理过后的sample中的数据。3.  在linux环境下，gcc版本为4.8.1 （可用gcc -v 查询）4.  解压所下载的GIZA++，我的版本为giza-pp-v1.0.7，发现其中有两个文件夹，其中mkcls是用于生成word class的。5. 对其进行编译">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: "always",
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> GIZA++参数说明 | cibiluozu </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">cibiluozu</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'cibiluozu','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GIZA++参数说明
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-03-29T10:46:23+08:00" content="2015-03-29">
+              2015-03-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/03/29/GIZA-参数说明/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/29/GIZA-参数说明/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##GIZA++ 参数说明 </p>
+<p><strong>1.  下载GIZA++</strong><br><strong>2.  准备语料，这里使用的是NiuTrans 里面 经过乱码过滤及数据预处理过后的sample中的数据。</strong><br><strong>3.  在linux环境下，gcc版本为4.8.1 （可用gcc -v 查询）</strong><br><strong>4.  解压所下载的GIZA++，我的版本为giza-pp-v1.0.7，发现其中有两个文件夹，其中mkcls是用于生成word class的。</strong><br><img src="/img/GIZA++_img1.png" alt="GIZA++_img1"><br><img src="/img/GIZA++_img2.png" alt="GIZA++_img2"><br><strong>5. 对其进行编译，新建一文件夹“tool”，并将生成的GIZA++-v2目录下的“GIZA++”，“snt2cooc.out”,“plain2snt.out”以及 mkcls-v2目录下的“mkcls”拷贝到tool下，并将准备好的语料也放入这个文件夹。</strong><br><img src="/img/GIZA++_img3.png" alt="GIZA++_img3"><br><img src="/img/GIZA++_img4.png" alt="GIZA++_img4"><br><strong>6.使用plain2snt.out 将 普通文本转化成GIZA++格式的文本。</strong><br><img src="/img/GIZA++_img5.png" alt="GIZA++_img5"><br><img src="/img/GIZA++_img6.png" alt="GIZA++_img6"><br>此时，tool文件夹下有如下内容：<br><img src="/img/GIZA++_img7.png" alt="GIZA++_img7"></p>
+<p>格式说明：</p>
+<p><em>ch.vcb (en.vcb)</em></p>
+<p>例子：<br><img src="/img/GIZA++_img8.png" alt="GIZA++_img8"></p>
+<p><em>ch_en.snt(en_ch.snt)</em></p>
+<p>每一个句子对都包括三行，第一行表示该句子对出现的次数，第二行表示源语言单词的ID序列（该例子中是中文即ch），第三行表示目标语言中的单词ID序列（该例子中是英文即en）</p>
+<p>例子：<br><img src="/img/GIZA++_img9.png" alt="GIZA++_img9"></p>
+<ul>
+<li>0 下标保留给特殊的 NULL</li>
+</ul>
+<p><strong>7. 运行 snt2cooc.out 获得共线文件。</strong></p>
+<p><img src="/img/GIZA++_img10.png" alt="GIZA++_img10"></p>
+<p>生成了 ：</p>
+<p><img src="/img/GIZA++_img11.png" alt="GIZA++_img11"></p>
+<p>格式说明：</p>
+<p><em>ch_en.cooc(en_ch.cooc)</em><br>包含所有可能的单词对。（按源句子字符串ID排列）</p>
+<ul>
+<li>注：一个单词能与另一个单词形成单词对的规则是两个单词都在一个句子对里。如果一个单词和另一个单词从未在句子对中出现过，则不构成单词对。比如3 乌鲁木齐 1 只在第一个句子对中出现过，所以它只能与第一个句子对中的目标句子字符串形成单词对。</li>
+</ul>
+<p>例子：</p>
+<p><img src="/img/GIZA++_img12.png" alt="GIZA++_img12"></p>
+<p><strong>8.  使用mkcls进行词语聚类</strong></p>
+<p>参数设置：<br>-n:表示训练迭代次数，默认为1<br>-p: 需要聚类的已分词文本<br>-V:输出信息<br>opt：优化运行<br>（注意参数与后面的值之间没有空格）</p>
+<p><img src="/img/GIZA++_img14.png" alt="GIZA++_img14"></p>
+<p>生成文件：</p>
+<p><img src="/img/GIZA++_img15.png" alt="GIZA++_img15"></p>
+<p><em>ch.classes (en.classes)</em><br>例子：</p>
+<p><img src="/img/GIZA++_img16.png" alt="GIZA++_img16"></p>
+<p><em>ch.classes.cats  (en.classes.cats)</em></p>
+<p><img src="/img/GIZA++_img17.png" alt="GIZA++_img17"></p>
+<p><strong>9.接下来运行GIZA++实现对齐操作</strong><br><img src="/img/GIZA++_img18.png" alt="GIZA++_img18"></p>
+<p>参数设置：<br>-m1 IBM 模型1的迭代次数。<br>-m2 IBM 模型2的迭代次数。<br>-m3 IBM 模型3的迭代次数。<br>-m4 IBM 模型4的迭代次数。<br>-m5 IBM 模型5的迭代次数。<br>-mh HMM 模型的迭代次数。<br>-CocurrenceFile  是一个特殊文件，包括所有可能的词汇对<br>-d 词典文件的位置(注意此处的词典应该是每个词的ID都有的，如果词典中没有的话，那么就取对空)<br>-s 源句子的词汇表<br>-t 目标句子的词汇表<br>-c 句子对的文件<br>-tc 测试文件<br>-o 输出文件的前缀<br>-nbestalignments 显示最好的n个对齐结果</p>
+<p>其中生成的文件有：</p>
+<p><img src="/img/GIZA++_img19.png" alt="GIZA++_img19"><br><img src="/img/GIZA++_img20.png" alt="GIZA++_img20"></p>
+<p>格式说明：</p>
+<p><em>c2e.a3.final</em><br> 每一行的文件格式如下所示。<br> i  j  l m p(i|j,l,m)<br> 其中代表的意义为：<br> j = 在目标句子中的位置<br> i = 在源句子中的位置<br> l = 源句子的长度<br> m =  目标句子的长度</p>
+<p> 例子：</p>
+<p><img src="/img/GIZA++_img21.png" alt="GIZA++_img21"></p>
+<p><em>c2e.A3.final</em><br>对齐文件<br>格式如下：<br><img src="/img/GIZA++_img22.png" alt="GIZA++_img22"><br>*花括号里表示的是该词对应的句子中的词的下标。</p>
+<p><em>c2e.d3.final</em></p>
+<p>每一行的文件格式如下所示。<br>j  i  l m p(i|j,l,m)<br>(与a只有一点不同，即j与i交换了位置)</p>
+<p>例子：</p>
+<p><img src="/img/GIZA++_img23.png" alt="GIZA++_img23"></p>
+<p><em>c2e.d4.final</em><br>Translation tables for Model 4</p>
+<p><em>c2e.D4.final</em><br>IBM Model4 的 distortion 表</p>
+<p><em>c2e.Decoder.config</em><br>用与ISI Rewrite Decoder 解码器</p>
+<p><em>c2e.gizacfg</em><br>包含了GIZA++的这次训练中所有参数的设定。在做同样的训练时可以用到。</p>
+<p><em>c2e.n3.final</em><br>(Fertility  table)<br>一个单词能够对应多少个词的概率。<br>格式为<br>source_token_id  p0 p1 p2 ….. pn<br>p0 是该词一个词都不对应的概率。</p>
+<p>例子：<br><img src="/img/GIZA++_img24.png" alt="GIZA++_img24"></p>
+<p><em>c2e.p0_3.final</em><br>这个文件只包含一个实数，即不插入空值的概率。</p>
+<p><em>c2e.perp</em><br>训练的最后产生，概括了每次迭代的困惑度值。</p>
+<p>例子：<br><img src="/img/GIZA++_img25.png" alt="GIZA++_img25"></p>
+<p><em>c2e.t3.final</em><br>(translation table)</p>
+<p>例子：<br><img src="/img/GIZA++_img26.png" alt="GIZA++_img26"></p>
+<p><em>c2e.trn.src.vcb c2e.trn.trg.vcb</em><br>类似于ch.vcb en.vcb 但是更准确。</p>
+<p><em>c2e.tst.src.vcb c2e.tst.trg.vcb</em><br>空文件</p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GIZA/" rel="tag">#GIZA++</a>
+          
+            <a href="/tags/WordAlignment/" rel="tag">#WordAlignment</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/03/01/基于HMM的词性标注/" rel="next" title="基于HMM的词性标注">
+                <i class="fa fa-chevron-left"></i> 基于HMM的词性标注
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/21/最大熵的公式推导/" rel="prev" title="最大熵的公式推导和一些应用">
+                最大熵的公式推导和一些应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/03/29/GIZA-参数说明/"
+           data-title="GIZA++参数说明" data-url="http://cibiluozu.com/2015/03/29/GIZA-参数说明/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="cibiluozu" />
+          <p class="site-author-name" itemprop="name">cibiluozu</p>
+          <p class="site-description motion-element" itemprop="description">纵有万千风浪在，亦将持剑凯歌往。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cibiluozu" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="weibo.com/cibiluozu" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cibiluozu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cibiluozu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>
